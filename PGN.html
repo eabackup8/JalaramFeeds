@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <style>
+        /* Global styles */
+        body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    color: #000000;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('https://i.pinimg.com/564x/c0/2c/d0/c02cd07c52fb8660e096f8a1bac9f417.jpg'); /* Replace with your pattern URL */
+    background-size: cover;
+}
+
+        /* Styles for the navigation bar */
+        nav {
+            background-color: #de3268; /* Dark blue background */
+            color: #ffffff; /* White text */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .h1 {
+            color: #000000; /* Black font color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adding a subtle shadow */
+          }
+
+        nav h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #cccccc; /* Light gray text on hover */
+        }
+
+        /* Styles for the sidebar */
+        .sidebar {
+            height: calc(100vh - 70px); /* Adjusted to accommodate the height of the navigation bar */
+            width: 240px;
+            position: fixed;
+            top: 70px; /* Adjusted to start below the navigation bar */
+            left: 0;
+            background-color: #0bc6ec; /* Light gray sidebar */
+            padding-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 999; /* Ensure sidebar is above content */
+            overflow-y: auto; /* Add scrollbar if content exceeds height */
+            
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 20px;
+            border-bottom: 1px solid #eeeeee; /* Light gray border */
+        }
+
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333; /* Dark text */
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+
+        .sidebar ul li:hover,
+        .sidebar ul li.active {
+            background-color: #f0f0f0; /* Light gray on hover/active */
+        }
+
+        /* Content area styles */
+        #content {
+            margin-top: 50px; /* Adjusted to match the height of the navigation bar */
+            margin-left: 240px; /* Adjusted to match the sidebar width */
+            padding: 20px;
+        }
+
+        /* Custom button styles */
+        .btn {
+            background-color: #1976d2; /* Dark blue button color */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #1565c0; /* Darker blue on hover */
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        .submenu.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <h1>Jalaram Dashboard</h1>
+        </div>
+    </nav>
+
+    <div class="sidebar">
+        <ul>
+            <li class="menu-item">
+                <a href="index.html"><i class="material-icons">assignment</i> Production</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="Dashbord.html">All Unit</a></li>
+                    <li><a href="PGN.html">Patanjali</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">assignment</i> Tasks</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">event</i> Calendar</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">insert_chart</i> Reports</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">email</i> Messages</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">people</i> Employees</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="#">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+            <li class="menu-item">
+                <a href="#"><i class="material-icons">people</i> Vehicle</a>
+                <!-- Submenu -->
+                <ul class="submenu">
+                    <li><a href="Vehicle.html">Menu 1</a></li>
+                    <li><a href="#">Menu 2</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Order Totals Dashboard (Financial Year)</title>
+    <!-- Include Bootstrap for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Chart.js for chart rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <style>
+        /* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg, #3498db, #8e44ad);
+    color: #fff;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('https://i.pinimg.com/564x/c0/2c/d0/c02cd07c52fb8660e096f8a1bac9f417.jpg'); /* Replace with your pattern URL */
+    background-size: cover;
+}
+
+
+/* Improved styling for "Patanjali Order" */
+.patanjali-order {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0a0821;
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+.card-header {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: none;
+}
+
+/* Table Styles */
+table {
+    max-width: 100%;
+    width: auto;
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    color: #333; /* Added color for better readability */
+    background-color: #fff; /* Added background color for better contrast */
+    border-radius: 8px; /* Added border radius for a softer look */
+    overflow: hidden; /* Added overflow hidden to prevent table border from being clipped by border-radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added box-shadow for depth */
+}
+
+th, td {
+    padding: 10px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 8px; /* Added border radius for a softer look */
+    overflow: hidden; /* Added overflow hidden to prevent content overflow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow for elevation */
+}
+
+/* Chart Styles */
+.monthly-chart {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+
+/* Adjust the width of the form-select */
+.form-select {
+    width: 150px;
+}
+      </style>
+</head>
+<body>
+  <!-- Content from page 1 -->
+  <div class="patanjali-order">Patanjali Order</div>
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title">FY Filter</h5>
+              <select id="financialYear1" class="form-select form-select-sm"></select>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Total Orders Received</th>
+                    </tr>
+                  </thead>
+                  <tbody id="monthlyTotalsBody1"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Monthly Order Chart (Received)</h5>
+              <canvas id="monthlyChart1" class="monthly-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+  <!-- Content from page 2 -->
+  <div class="patanjali-order">Patanjali Dispatch</div>
+  <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="card-title">FY Filter</h5>
+              <select id="financialYear2" class="form-select form-select-sm"></select>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Total Orders Dispatched</th>
+                    </tr>
+                  </thead>
+                  <tbody id="monthlyTotalsBody2"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Monthly Order Chart (Dispatched)</h5>
+              <canvas id="monthlyChart2" class="monthly-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    async function fetchData(url) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.content;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        return null;
+      }
+    }
+
+    function getFinancialYear(date) {
+      const month = date.getMonth();
+      const year = date.getFullYear();
+
+      if (month >= 3) {
+        return year;
+      } else {
+        return year - 1;
+      }
+    }
+
+    function filterDataByFinancialYear(data, financialYear) {
+      return data.filter(order => getFinancialYear(new Date(order[1])) === financialYear);
+    }
+
+    async function visualizeData(financialYear, idSuffix, orderType) {
+      const orders = await fetchData('https://script.google.com/macros/s/AKfycbysEipapo5q2IBn_-SYT0QETFOpZN_GCrI9xveSt6H97wiCX1xqcy-HS83aK4expO5pSQ/exec');
+      if (!orders) {
+        return;
+      }
+
+      const filteredOrders = filterDataByFinancialYear(orders, financialYear);
+
+      const months = {};
+      filteredOrders.forEach(order => {
+        const date = new Date(order[1]);
+        if (!isNaN(date.getTime())) {
+          const monthYear = date.toLocaleString('en-US', { month: 'short', year: '2-digit' });
+          if (!months[monthYear]) {
+            months[monthYear] = 0;
+          }
+          // Adjust the index based on the order type
+          if (orderType === 'received') {
+            months[monthYear] += parseFloat(order[10]);
+          } else if (orderType === 'dispatched') {
+            months[monthYear] += parseFloat(order[11]);
+          }
+        }
+      });
+
+      populateTable(months, `monthlyTotalsBody${idSuffix}`);
+      updateChart(months, `monthlyChart${idSuffix}`);
+    }
+
+    function populateTable(months, id) {
+      const monthlyTotalsBody = document.getElementById(id);
+      monthlyTotalsBody.innerHTML = '';
+      for (const monthYear in months) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${monthYear}</td>
+          <td>${months[monthYear].toFixed(2)}</td>
+        `;
+        monthlyTotalsBody.appendChild(row);
+      }
+    }
+
+    let charts = {};
+
+    function updateChart(months, id) {
+      const labels = Object.keys(months);
+      const data = Object.values(months);
+
+      if (!charts[id]) {
+        const ctx = document.getElementById(id).getContext('2d');
+        charts[id] = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: id.includes('1') ? 'Total Orders Received' : 'Total Orders Dispatched',
+              data: data,
+              fill: false,
+              borderColor: '#007bff',
+              backgroundColor: 'rgba(0, 123, 255, 0.2)',
+              borderWidth: 3,
+              pointBackgroundColor: '#007bff',
+              pointBorderColor: '#fff',
+              pointRadius: 6,
+              pointHoverRadius: 8,
+              tension: 0.3
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: {
+                display: true,
+                text: id.includes('1') ? 'Monthly Order Totals (Received)' : 'Monthly Order Totals (Dispatched)',
+                color: '#007bff',
+                font: {
+                  size: 24,
+                  weight: 'bold'
+                }
+              },
+              tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                  label: function(context) {
+                    return 'Total Orders: ' + context.raw.toFixed(2);
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                display: true,
+                title: {
+                  display: true,
+                  text: 'Month',
+                  color: '#555',
+                  font: {
+                    weight: 'bold'
+                  }
+                },
+                grid: {
+                  color: '#ddd'
+                },
+                ticks: {
+                  color: '#555'
+                }
+              },
+              y: {
+                display: true,
+                title: {
+                  display: true,
+                  text: 'Total Orders',
+                  color: '#555',
+                  font: {
+                    weight: 'bold'
+                  }
+                },
+                grid: {
+                  color: '#ddd'
+                },
+                ticks: {
+                  color: '#555'
+                }
+              }
+            }
+          }
+        });
+      } else {
+        charts[id].data.labels = labels;
+        charts[id].data.datasets[0].data = data;
+        charts[id].update();
+      }
+    }
+
+    function populateFinancialYearDropdown(id) {
+      const currentYear = new Date().getFullYear();
+      const financialYear = getFinancialYear(new Date());
+      const financialYearSelect = document.getElementById(id);
+
+      for (let year = currentYear - 2; year <= currentYear; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.text = `${year} - ${year + 1}`;
+        if (year === financialYear) {
+          option.selected = true;
+        }
+        financialYearSelect.appendChild(option);
+      }
+    }
+
+    document.getElementById('financialYear1').addEventListener('change', function() {
+      const selectedYear = parseInt(this.value);
+      visualizeData(selectedYear, '1', 'received');
+    });
+
+    document.getElementById('financialYear2').addEventListener('change', function() {
+      const selectedYear = parseInt(this.value);
+      visualizeData(selectedYear, '2', 'dispatched');
+    });
+
+    populateFinancialYearDropdown('financialYear1');
+    populateFinancialYearDropdown('financialYear2');
+    visualizeData(getFinancialYear(new Date()), '1', 'received');
+    visualizeData(getFinancialYear(new Date()), '2', 'dispatched');
+  </script>
+</body>
+</html>
+      
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuItems = document.querySelectorAll('.menu-item');
+
+            menuItems.forEach(item => {
+                const submenu = item.querySelector('.submenu');
+                if (submenu) {
+                    item.addEventListener('click', () => {
+                        submenu.classList.toggle('show');
+                    });
+                }
+            });
+
+            // Close submenu when clicking outside of it
+            window.addEventListener('click', function (event) {
+                menuItems.forEach(item => {
+                    const submenu = item.querySelector('.submenu');
+                    if (submenu && !item.contains(event.target)) {
+                        submenu.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
